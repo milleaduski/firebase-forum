@@ -1,1 +1,50 @@
-<h1>Welcome to homepage</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>This the homepage</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyBjqtIMpcWqEVA1SsI5lkDhDPQZHvdaKYM",
+	    authDomain: "forum-firebase-b3205.firebaseapp.com",
+	    databaseURL: "https://forum-firebase-b3205.firebaseio.com",
+	    projectId: "forum-firebase-b3205",
+	    storageBucket: "forum-firebase-b3205.appspot.com",
+	    messagingSenderId: "831909117594",
+	    appId: "1:831909117594:web:05602291ce42908b"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	  var auth = firebase.auth();
+
+function login() {
+	var provider = new firebase.auth.GoogleAuthProvider();
+
+	firebase.auth().signInWithPopup(provider).then(function(result) {
+
+	  alert("Successfully logged in..");
+	}).catch(function(error) {
+	  console.log(error)
+	});
+}
+	</script>
+</head>
+<body>
+<div class="jumbotron">
+  <h1 class="display-4">Hi, Welcome to forum app in firebase!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+   <button class="btn btn-danger" type="button" name="button" onclick="login()">Login Gmail</button>
+  </p>
+</div>
+
+</body>
+</html>
