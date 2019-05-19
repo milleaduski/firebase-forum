@@ -8,8 +8,8 @@
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#config-web-app -->
-	<script>
-	  // Your web app's Firebase configuration
+	<script type="text/javascript">
+		// Your web app's Firebase configuration
 	  var firebaseConfig = {
 	    apiKey: "AIzaSyBjqtIMpcWqEVA1SsI5lkDhDPQZHvdaKYM",
 	    authDomain: "forum-firebase-b3205.firebaseapp.com",
@@ -19,21 +19,10 @@
 	    messagingSenderId: "831909117594",
 	    appId: "1:831909117594:web:05602291ce42908b"
 	  };
-	  // Initialize Firebase
+		// Initialize Firebase
 	  firebase.initializeApp(firebaseConfig);
-	  var auth = firebase.auth();
-
-function login() {
-	var provider = new firebase.auth.GoogleAuthProvider();
-
-	firebase.auth().signInWithPopup(provider).then(function(result) {
-
-	  alert("Successfully logged in..");
-	}).catch(function(error) {
-	  console.log(error)
-	});
-}
 	</script>
+	<script type="text/javascript" src="/assets/js/auth.js"></script>
 </head>
 <body>
 <div class="jumbotron">
@@ -42,7 +31,9 @@ function login() {
   <hr class="my-4">
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <p class="lead">
-   <button class="btn btn-danger" type="button" name="button" onclick="login()">Login Gmail</button>
+   <button class="btn btn-danger" type="button" name="button" onclick="login('gmail')">Login Gmail</button>
+   <button class="btn btn-primary" type="button" name="button" onclick="login('fb')">Login FB</button>
+   <button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
   </p>
 </div>
 
