@@ -6,6 +6,8 @@ function login(provider) {
 			var provider = new firebase.auth.GoogleAuthProvider(); break;
 		case 'fb':
 			var provider = new firebase.auth.FacebookAuthProvider(); break;
+		case 'twitter':
+			var provider = new firebase.auth.TwitterAuthProvider(); break;
 		default:
 	}
 
