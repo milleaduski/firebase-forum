@@ -1,4 +1,5 @@
 var auth = firebase.auth();
+var db = firebase.firestore();
 
 function login(provider) {
 	switch (provider) {
@@ -12,8 +13,20 @@ function login(provider) {
 	}
 
 	firebase.auth().signInWithPopup(provider).then(function(result) {
-		console.log(result)
-	  alert("Successfully logged in..");
+		var token = result.credential.accessToken;
+		var user = result.user
+
+		db.collection('users').doc(user.uid).get()
+		.then(function(doc) {
+			if(doc.exists) {
+				console.log("User exists")
+			} else {
+				db.collection('users').doc(user.uid).set({
+					name: user.displayName
+				});
+				console.log("User successfully registered")
+			}
+		});
 	}).catch(function(error) {
 	  console.log(error)
 	});
