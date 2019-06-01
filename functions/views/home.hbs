@@ -23,7 +23,6 @@
 		// Initialize Firebase
 	  firebase.initializeApp(firebaseConfig);
 	</script>
-	<script type="text/javascript" src="/assets/js/auth.js"></script>
 </head>
 <body>
 <div class="jumbotron">
@@ -51,26 +50,6 @@
   	<button class="btn btn-info" type="button" name="button" onclick="addTopic()">Add topic</button>
   </form>
 </div>
-<script type="text/javascript">
-	
-
-function addTopic() {
-	var title  = document.getElementById('title').value
-	var desc = document.getElementById('desc').value
-	var slug = title.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g,'-')
-
-	db.collection('forums').add({
-		title		: title,
-		slug		: slug,
-		desc		: desc.replace("<br />", "\n"),
-		created_at 	: new Date(),
-		updated_at 	: new Date()
-	}).then(function(docRef){
-		alert("The forum was successfully created")
-	}).catch(function(err){
-		alert("There was an error adding the forum")
-	})
-}
-</script>
+<script type="text/javascript" src="/assets/js/auth.js"></script>
 </body>
 </html>
