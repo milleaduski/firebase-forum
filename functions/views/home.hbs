@@ -37,6 +37,13 @@
    <button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
   </p>
   <hr>
+<h2>List of Forums</h2>
+<ul>
+	{{#each dataForums}}
+	<li>{{title}}</li>
+	<span style="display:block;"><i><b>Desc :</b></i> {{desc}}</span>
+	{{/each}}
+</ul>
 <h2>Add Forum</h2>
   <form>
   	<div class="form-group">
