@@ -38,5 +38,20 @@ var forums = [];
 	}).catch(err => {
 		console.log(err)
 	})
+})
+
+app.get('/forum/:slug', function(req, res) {
+var forum = null;
+	db.collection('forums').where('slug', '==', req.params.slug).get()
+	.then(snapshot => {
+		snapshot.forEach(doc => {
+			forum = doc.data()
+			console.log(forum)
+		})
+		res.render('forum-detail', {forum:forum})
+	}).catch(err => {
+		console.log(err)
+	})
 });
+
 exports.app = functions.https.onRequest(app);

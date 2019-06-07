@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>This the homepage</title>
+	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
@@ -26,8 +27,7 @@
 </head>
 <body>
 <div class="jumbotron">
-  <h1 class="display-4">Hi, Welcome to forum app in firebase!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <h1 class="display-4">Hi, This the single forum. you can see any detail!</h1>
   <hr class="my-4">
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <p class="lead">
@@ -37,25 +37,8 @@
    <button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
   </p>
   <hr>
-<h2>List of Forums</h2>
-<ul>
-	{{#each dataForums}}
-	<li><a href="/forum/{{slug}}">{{title}}</a></li>
-	<span style="display:block;"><i><b>Desc :</b></i> {{desc}}</span>
-	{{/each}}
-</ul>
-<h2>Add Forum</h2>
-  <form>
-  	<div class="form-group">
-	    <label for="title">Title</label>
-	    <input type="text" class="form-control" id="title" placeholder="Your tittle">
-  	</div>
-  	<div class="form-group">
-	    <label for="desc">Desciptions</label>
-	    <textarea class="form-control" id="desc" rows="3"></textarea>
-  	</div>
-  	<button class="btn btn-info" type="button" name="button" onclick="addTopic()">Add topic</button>
-  </form>
+<h2>Forum {{forum.title}}</h2>
+<p>{{forum.desc}} <span><i>by: <b>{{forum.user.username}}</b></i></span></p>
 </div>
 <script type="text/javascript" src="/assets/js/auth.js"></script>
 </body>
