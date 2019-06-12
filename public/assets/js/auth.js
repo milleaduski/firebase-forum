@@ -42,7 +42,9 @@ var currentUser = null;
 auth.onAuthStateChanged(function(user){
 	if (user) {
 		currentUser = user
-		console.log(currentUser)
+		console.log(user.uid)
+		if(document.getElementById('owner_id').value == user.uid)
+			document.getElementById('btn-edit').classList.remove('is-hidden')
 	}
 });
 
@@ -64,6 +66,6 @@ function addTopic() {
 	}).then(function(docRef){
 		alert("The forum was successfully created")
 	}).catch(function(err){
-		alert("There was an error adding the forum")
+		console.log(err)
 	})
 }

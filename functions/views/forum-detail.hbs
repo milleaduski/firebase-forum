@@ -39,7 +39,14 @@
   <hr>
 <h2>Forum {{forum.title}}</h2>
 <p>{{forum.desc}} <span><i>by: <b>{{forum.user.username}}</b></i></span></p>
+<input type="hidden" name="owner_uid" id="owner_id" value="{{forum.user.user_id}}">
+<button type="button" class="btn btn-info is-hidden" id="btn-edit">Edit</button>
 </div>
 <script type="text/javascript" src="/assets/js/auth.js"></script>
 </body>
+<style type="text/css">
+	.is-hidden {
+		display: none;
+	}
+</style>
 </html>
