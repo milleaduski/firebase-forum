@@ -31,7 +31,6 @@ var forums = [];
 	db.collection('forums').orderBy('updated_at', 'desc').get()
 	.then(snapshot => {
 		snapshot.forEach(doc => {
-			console.log(doc.data())
 			forums.push(doc.data())
 		})
 		res.render('home', {dataForums:forums})
@@ -46,7 +45,7 @@ var forum = null;
 	.then(snapshot => {
 		snapshot.forEach(doc => {
 			forum = doc.data()
-			console.log(forum)
+			forum.id = doc.id
 		})
 		res.render('forum-detail', {forum:forum})
 	}).catch(err => {

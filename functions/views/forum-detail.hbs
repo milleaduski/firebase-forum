@@ -24,26 +24,65 @@
 		// Initialize Firebase
 	  firebase.initializeApp(firebaseConfig);
 	</script>
+	<script type="text/javascript" src="/assets/js/auth.js"></script>
 </head>
 <body>
 <div class="jumbotron">
-  <h1 class="display-4">Hi, This the single forum. you can see any detail!</h1>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-   <button class="btn btn-danger" type="button" name="button" onclick="login('gmail')">Login Gmail</button>
-   <button class="btn btn-primary" type="button" name="button" onclick="login('fb')">Login FB</button>
-   <button class="btn btn-info" type="button" name="button" onclick="login('twitter')">Login Twitter</button>
-   <button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
-  </p>
-  <hr>
-<h2>Forum {{forum.title}}</h2>
-<p>{{forum.desc}} <span><i>by: <b>{{forum.user.username}}</b></i></span></p>
-<input type="hidden" name="owner_uid" id="owner_id" value="{{forum.user.user_id}}">
-<button type="button" class="btn btn-info is-hidden" id="btn-edit">Edit</button>
+	<h1 class="display-4">Hi, This the single forum. you can see any detail!</h1>
+	<hr class="my-4">
+	<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+	<p class="lead">
+	<button class="btn btn-danger" type="button" name="button" onclick="login('gmail')">Login Gmail</button>
+	<button class="btn btn-primary" type="button" name="button" onclick="login('fb')">Login FB</button>
+	<button class="btn btn-info" type="button" name="button" onclick="login('twitter')">Login Twitter</button>
+	<button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
+	</p>
+	<hr>
+	<h2>Forum {{forum.title}}</h2>
+	<p>{{forum.desc}} <span><i>by: <b>{{forum.user.username}}</b></i></span></p>
+	<input type="hidden" name="owner_uid" id="owner_id" value="{{forum.user.user_id}}">
+	<a href="#" class="btn btn-info is-hidden" id="btn-edit" onclick="showEditForm()">Edit</a>
 </div>
-<script type="text/javascript" src="/assets/js/auth.js"></script>
-</body>
+<div class="is-hidden" id="editForm">
+	<div class="row">
+		<div class="container">
+			<form>
+				<div class="form-group">
+				    <label for="title">Title</label>
+				    <input type="text" class="form-control" id="title" value="{{forum.title}}" placeholder="Your tittle">
+				</div>
+				<div class="form-group">
+				    <label for="desc">Desciptions</label>
+				    <textarea class="form-control" id="desc" rows="3">{{forum.desc}}</textarea>
+				</div>
+				<button class="btn btn-info" type="button" name="button" id="update-btn" onclick="updateForum('{{forum.id}}')">Update</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var auth = firebase.auth();
+var db = firebase.firestore();
+
+function showEditForm() {
+	document.getElementById('editForm').classList.remove('is-hidden')
+}
+
+
+function updateForum(id) {
+	db.collection('forums').doc(id).set({
+		title : document.getElementById('title').value,
+		desc : document.getElementById('desc').value,
+		updated_at : new Date()
+	}, {merge : true})
+	.then(function(){
+		location.reload()
+	}).catch(function(err){
+		console.log(err)
+	})
+}
+</script>
 <style type="text/css">
 	.is-hidden {
 		display: none;
