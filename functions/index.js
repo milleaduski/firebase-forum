@@ -47,7 +47,16 @@ var forum = null;
 			forum = doc.data()
 			forum.id = doc.id
 		})
-		res.render('forum-detail', {forum:forum})
+
+		// Load replies
+		var replies=[]
+		db.collection('forums').doc(forum.id).collection('replies').get()
+			.then(snapshot => {
+				snapshot.forEach(doc => {
+					replies.push(doc.data())
+				})
+			})
+		res.render('forum-detail', {forum:forum, comments:replies})
 	}).catch(err => {
 		console.log(err)
 	})

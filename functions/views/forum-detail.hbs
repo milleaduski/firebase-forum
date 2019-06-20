@@ -63,6 +63,14 @@
 <br>
 <div class="row">
 	<div class="container">
+		<h4>List comments</h4>
+		{{#each comments}}
+			{{desc}}
+		{{/each}}
+	</div>
+</div>
+<div class="row">
+	<div class="container">
 		<div class="form-group">
 			<textarea class="form-control col-md-6" id="comment" rows="3" placeholder="Your comment" style="margin-bottom:5px;"></textarea>
 			<button type="button" class="btn btn-success" onclick="addComment('{{forum.id}}')">Add comment</button>
