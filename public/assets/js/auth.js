@@ -19,7 +19,7 @@ function login(provider) {
 		db.collection('users').doc(user.uid).get()
 		.then(function(doc) {
 			if(doc.exists) {
-				console.log("User exists")
+				// console.log("User exists")
 			} else {
 				db.collection('users').doc(user.uid).set({
 					name: user.displayName
@@ -31,7 +31,6 @@ function login(provider) {
 	  console.log(error)
 	});
 }
-
 function logout() {
 	auth.signOut().then(function() {
 		alert("Successfully logged out..");
@@ -42,9 +41,15 @@ var currentUser = null;
 auth.onAuthStateChanged(function(user){
 	if (user) {
 		currentUser = user
-		console.log(user.uid)
 		if(document.getElementById('owner_id').value == user.uid)
 			document.getElementById('btn-edit').classList.remove('is-hidden')
+
+		var elements = document.getElementsByClassName('replies-btn');
+		for (var i = 0; i < elements.length; i++ ) {
+		if(elements[i].getAttribute('owner-id') == user.uid) {
+				elements[i].classList.remove('is-hidden')
+			}
+		}
 	}
 });
 

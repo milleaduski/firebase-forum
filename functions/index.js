@@ -53,10 +53,15 @@ var forum = null;
 		db.collection('forums').doc(forum.id).collection('replies').get()
 			.then(snapshot => {
 				snapshot.forEach(doc => {
-					replies.push(doc.data())
+					replies.push({
+						data: doc.data(),
+						id:doc.id
+					})
 				})
+				res.render('forum-detail', {forum:forum, replies:replies})
+			}).catch(function(err) {
+				console.log("There is something wrong")
 			})
-		res.render('forum-detail', {forum:forum, comments:replies})
 	}).catch(err => {
 		console.log(err)
 	})

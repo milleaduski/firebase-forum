@@ -62,10 +62,11 @@
 </div>
 <br>
 <div class="row">
-	<div class="container">
+	<div class="container" id="contain-comm">
 		<h4>List comments</h4>
-		{{#each comments}}
-			{{desc}}
+		{{#each replies}}
+			{{data.desc}} by <b><i>{{data.user.name}}</i></b>
+			<a href="#" class="btn btn-info is-hidden replies-btn" owner-id="{{data.user.user_id}}" onclick="editComment()">Edit</a><br>
 		{{/each}}
 	</div>
 </div>
