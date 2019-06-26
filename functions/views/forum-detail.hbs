@@ -41,6 +41,7 @@
 	<h2>Forum {{forum.title}}</h2>
 	<p>{{forum.desc}} <span><i>by: <b>{{forum.user.username}}</b></i></span></p>
 	<input type="hidden" name="owner_uid" id="owner_id" value="{{forum.user.user_id}}">
+	<input type="hidden" name="forum_id" id="forum_id" value="{{forum.id}}">
 	<a href="#" class="btn btn-info is-hidden" id="btn-edit" onclick="showEditForm()">Edit</a>
 </div>
 <div class="is-hidden" id="editForm">
@@ -66,12 +67,26 @@
 		<h4>List comments</h4>
 		{{#each replies}}
 			{{data.desc}} by <b><i>{{data.user.name}}</i></b>
-			<a href="#" class="btn btn-info is-hidden replies-btn" owner-id="{{data.user.user_id}}" onclick="editComment()">Edit</a><br>
+			<button type="button"class="btn btn-info replies-btn" owner-id="{{data.user.user_id}}" onclick="editComment('{{id}}','{{data.desc}}')">Edit</button><br>
 		{{/each}}
 	</div>
 </div>
+<br>
+<div class="is-hidden" id="updateForum">
+	<div class="row">
+		<div class="container">
+			<div class="form-group">
+				<textarea class="form-control col-md-6" id="comment-desc" rows="3" placeholder="Your comment" style="margin-bottom:5px;"></textarea>
+				<button type="button" class="btn btn-success" onclick="updateComment('{{id}}',{{data.desc}})">Update comment</button>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
 <div class="row">
 	<div class="container">
+		<h4>Add comments</h4>
 		<div class="form-group">
 			<textarea class="form-control col-md-6" id="comment" rows="3" placeholder="Your comment" style="margin-bottom:5px;"></textarea>
 			<button type="button" class="btn btn-success" onclick="addComment('{{forum.id}}')">Add comment</button>
@@ -118,6 +133,31 @@ function addComment(forumId) {
 		window.location = window.location.href + '/' + slug
 	}).catch(function(error){
 		console.log(error)
+	})
+}
+
+var activeReplyId = '';
+function editComment(replyId, prevDes) {
+	activeReplyId = replyId;
+	document.getElementById('comment-desc').value = prevDes;
+	document.getElementById('updateForum').classList.remove('is-hidden');
+
+}
+
+function updateComment() {
+	var forumId = document.getElementById('forum_id').value;
+	var newComment = document.getElementById('comment-desc').value;
+
+	var dbRef = db.collection('forums').doc(forumId).collection('replies').doc(activeReplyId);
+
+	dbRef.set({
+		desc: newComment.replace("<br />","\n"),
+		updated_at: new Date()
+	},{merge:true})
+	.then(function(res){
+		location.reload()
+	}).catch(function(err){
+		console.log(err)
 	})
 }
 </script>
