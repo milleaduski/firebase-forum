@@ -2,41 +2,14 @@
 <html>
 <head>
 	<title>This the homepage</title>
-	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-	<script type="text/javascript">
-		// Your web app's Firebase configuration
-	  var firebaseConfig = {
-	    apiKey: "AIzaSyBjqtIMpcWqEVA1SsI5lkDhDPQZHvdaKYM",
-	    authDomain: "forum-firebase-b3205.firebaseapp.com",
-	    databaseURL: "https://forum-firebase-b3205.firebaseio.com",
-	    projectId: "forum-firebase-b3205",
-	    storageBucket: "forum-firebase-b3205.appspot.com",
-	    messagingSenderId: "831909117594",
-	    appId: "1:831909117594:web:05602291ce42908b"
-	  };
-		// Initialize Firebase
-	  firebase.initializeApp(firebaseConfig);
-	</script>
-	<script type="text/javascript" src="/assets/js/auth.js"></script>
+	{{> scripts}}
 </head>
 <body>
 <div class="jumbotron">
 	<h1 class="display-4">Hi, This the single forum. you can see any detail!</h1>
 	<hr class="my-4">
 	<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-	<p class="lead">
-	<button class="btn btn-danger" type="button" name="button" onclick="login('gmail')">Login Gmail</button>
-	<button class="btn btn-primary" type="button" name="button" onclick="login('fb')">Login FB</button>
-	<button class="btn btn-info" type="button" name="button" onclick="login('twitter')">Login Twitter</button>
-	<button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
-	</p>
+	{{> auth}}
 	<hr>
 	<h2>Forum {{forum.title}}</h2>
 	<p>{{forum.desc}} <span><i>by: <b>{{forum.user.username}}</b></i></span></p>

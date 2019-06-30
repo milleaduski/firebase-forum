@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const express = require('express');
+const hbs = require('express-handlebars');
 const cons = require('consolidate');
 
 
@@ -22,7 +23,15 @@ firestore.settings({ timestampsInSnapshots: true });
 const db = admin.firestore();
 const app = express();
 
-app.engine('hbs', cons.handlebars);
+// Prev tutorials
+//app.engine('hbs', cons.handlebars);
+
+USE NEW TUTORIAL PART 16
+app.engine('hbs', hbs({
+	extname: 'hbs',
+	partialsDir: __dirname + '/views/partials'
+}));
+
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
