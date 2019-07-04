@@ -50,8 +50,19 @@ auth.onAuthStateChanged(function(user){
 				elements[i].classList.remove('is-hidden')
 			}
 		}
+		console.log('login')
+		toggleLogin()
+	} else {
+		console.log("Logout")
+		toggleLogin()
 	}
 });
+
+function toggleLogin() {
+	document.getElementById('logout-wrapper').classList.add('is-hidden');
+	document.getElementById('login-wrapper').classList.add('is-hidden');
+
+}
 
 function addTopic() {
 	var title  = document.getElementById('title').value

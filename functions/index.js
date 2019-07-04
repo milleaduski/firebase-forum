@@ -24,13 +24,13 @@ const db = admin.firestore();
 const app = express();
 
 // Prev tutorials
-//app.engine('hbs', cons.handlebars);
+app.engine('hbs', cons.handlebars);
 
-USE NEW TUTORIAL PART 16
-app.engine('hbs', hbs({
-	extname: 'hbs',
-	partialsDir: __dirname + '/views/partials'
-}));
+//USE NEW TUTORIAL PART 16
+// app.engine('hbs', hbs({
+// 	extname: 'hbs',
+// 	partialsDir: __dirname + '/views/partials'
+// }));
 
 app.set('view engine', 'hbs');
 app.set('views', './views');

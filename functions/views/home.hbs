@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>This the homepage</title>
-	{{> scripts}}
+<title>This the homepage</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+<script type="text/javascript">
+	// Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBjqtIMpcWqEVA1SsI5lkDhDPQZHvdaKYM",
+    authDomain: "forum-firebase-b3205.firebaseapp.com",
+    databaseURL: "https://forum-firebase-b3205.firebaseio.com",
+    projectId: "forum-firebase-b3205",
+    storageBucket: "forum-firebase-b3205.appspot.com",
+    messagingSenderId: "831909117594",
+    appId: "1:831909117594:web:05602291ce42908b"
+  };
+	// Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+</script>
+<style type="text/css">
+	.is-hidden{
+		display: none;
+	}
+</style>
 </head>
 <body>
 <div class="jumbotron">
   <h1 class="display-4">Hi, Welcome to forum app in firebase!</h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  {{> auth}}
+  <p>Its uses utility classes for typography and spacing to space content out within the larger container.</p>
+	<div id="login-wrapper">
+		<button class="btn btn-danger" type="button" name="button" onclick="login('gmail')">Login Gmail</button>
+	   <button class="btn btn-primary" type="button" name="button" onclick="login('fb')">Login FB</button>
+	   <button class="btn btn-info" type="button" name="button" onclick="login('twitter')">Login Twitter</button>
+	</div>
+	<div id="logout-wrapper" class="is-hidden">
+		<button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
+	</div>
   <hr>
 <h2>List of Forums</h2>
 <ul>
