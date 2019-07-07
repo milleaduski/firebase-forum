@@ -41,6 +41,7 @@ var currentUser = null;
 auth.onAuthStateChanged(function(user){
 	if (user) {
 		currentUser = user
+		console.log(currentUser)
 		if(document.getElementById('owner_id').value == user.uid)
 			document.getElementById('btn-edit').classList.remove('is-hidden')
 
@@ -51,10 +52,10 @@ auth.onAuthStateChanged(function(user){
 			}
 		}
 		console.log('login')
-		toggleLogin()
+		// toggleLogin()
 	} else {
 		console.log("Logout")
-		toggleLogin()
+		// toggleLogin()
 	}
 });
 

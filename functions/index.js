@@ -37,12 +37,13 @@ app.set('views', './views');
 
 app.get('/forum', function(req, res) {
 var forums = [];
-	db.collection('forums').orderBy('updated_at', 'desc').get()
+	db.collection('forums').orderBy('updated_at', 'desc').limit(2).get()
 	.then(snapshot => {
 		snapshot.forEach(doc => {
 			forums.push(doc.data())
 		})
-		res.render('home', {dataForums:forums})
+		var lastItem = forums[forums.length - 1 ];
+		res.render('home', {dataForums:forums, lastForumTime: Date.parse(lastItem.updated_at)})
 	}).catch(err => {
 		console.log(err)
 	})
@@ -59,7 +60,7 @@ var forum = null;
 
 		// Load replies
 		var replies=[]
-		db.collection('forums').doc(forum.id).collection('replies').get()
+		db.collection('forums').doc(forum.id).collection('replies').limit(2).get()
 			.then(snapshot => {
 				snapshot.forEach(doc => {
 					replies.push({

@@ -36,7 +36,7 @@
 	   <button class="btn btn-primary" type="button" name="button" onclick="login('fb')">Login FB</button>
 	   <button class="btn btn-info" type="button" name="button" onclick="login('twitter')">Login Twitter</button>
 	</div>
-	<div id="logout-wrapper" class="is-hidden">
+	<div id="logout-wrapper">
 		<button class="btn btn-success" type="button" name="button" onclick="logout()">Log out</button>
 	</div>
   <hr>
@@ -46,6 +46,7 @@
 	<li><a href="/forum/{{slug}}">{{title}}</a></li>
 	<span style="display:block;"><i><b>Desc :</b></i> {{desc}}</span>
 	{{/each}}
+	<a href="#" onclick="previous({{lastForumTime}})"><< Prev</a>
 </ul>
 <h2>Add Forum</h2>
   <form>
